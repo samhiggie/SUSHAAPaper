@@ -1,0 +1,827 @@
+
+% Customizable fields and text areas start with % >> below.
+% Lines starting with the comment character (%) are normally removed before release outside the collaboration, but not those comments ending lines
+
+%%%%%%%%%%%%% local definitions %%%%%%%%%%%%%%%%%%%%%
+
+\newlength\cmsTabSkip\setlength{\cmsTabSkip}{1ex}
+
+\newcommand{\mt}{\ensuremath{m_\mathrm{T}}\xspace}
+\newcommand{\dzeta}{\ensuremath{D_\zeta}\xspace}
+\newcommand{\mvis}{\ensuremath{m_\text{vis}}\xspace}
+\newcommand{\mtt}{\ensuremath{m_{\Pgt\Pgt}}\xspace}
+\newcommand{\hww}{\ensuremath{\PH\to\PW\PW}\xspace}
+\newcommand{\pttt}{\ensuremath{\pt^{\Pgt\Pgt}}\xspace}
+\newcommand{\pth}{\ensuremath{\pt^{\PH}}\xspace}
+\newcommand{\mjj}{\ensuremath{m_\mathrm{jj}}\xspace}
+\newcommand\mynobreakpar{\par\nobreak\@afterheading} 
+\providecommand{\mH}{\ensuremath{m_{\PH}}\xspace}
+
+
+%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
+\cmsNoteHeader{SUS-20-208} % This is over-written in the CMS environment: useful as preprint no. for export versions
+% >> Title: please make sure that the non-TeX equivalent is in PDFTitle below for papers. For PASs, PDFTitle can be used with plain TeX.
+\title{Search for exotic decays of the Standard Model Higgs boson to pseudoscalars in the high mass region, with a pair of muons and tau leptons in the final state with the full Run II Dataset}
+
+% >> Authors
+%Author is always "The CMS Collaboration" for PAS and papers, so author, etc, below will be ignored in those cases
+%For multiple affiliations, create an address entry for the combination
+%To mark authors as primary, use the \author* form
+\address[cern]{CERN}
+\author*[cern]{The CMS Collaboration}
+
+% >> Date
+% The date is in yyyy/mm/dd format. Today has been
+% redefined to match, but if the date needs to be fixed, please write it in this fashion.
+\date{\today}
+
+% >> Abstract
+% Abstract processing:
+% 1. **DO NOT use \include or \input** to include the abstract: our abstract extractor will not search through other files than this one.
+% 2. **DO NOT use %**                  to comment out sections of the abstract: the extractor will still grab those lines (and they won't be comments any longer!).
+% 3. For PASs: **DO NOT use CMS tex macros.**...in the abstract: CDS MathJax processor used on the abstract doesn't understand them _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
+\abstract{
+A search is conducted for exotic decays of the Standard Model Higgs Boson, $H$, decaying to a pair of pseudoscalars, $a$, which then decay to a pair of muons and tau leptons. Pseudoscalar masses between 20 and 60 GeV are investigated using the full Run II dataset, corresponding to 137 $fb^{-1}$. Motivation for the existence of the pseudoscalar Higgs particle is primarily supported by Beyond Standard Model (BSM) Two Higgs Doublet Models with the extension of a Singlet (2HDM+S) theories - which include the Next to Minimal Super Symmetric Model (NMSSM). Upper limits on the branching fraction are set.
+}
+
+% >> PDF Metadata
+% Do not comment out the following hypersetup lines (metadata). They will disappear in NODRAFT mode and are needed by CDS.
+% Also: make sure that the values of the metadata items are sensible and are in plain text with the possible exception of the PDFtitle for a PAS. Then you can use pure TeX symbols as if on a typewriter. Examples: $\sqrt{s}=13\TeV$ => $sqrt{s}=$ 13 TeV; 32\fbinv => 32 fb$^{-1}$
+% No unescaped comment % characters.
+% No curly braces {} except for TeX in the PDFtitle.
+\hypersetup{%
+pdfauthor={Sam Higginbotham},%
+pdftitle={Search for exotic decays of the Standard Model Higgs boson to pseudoscalars in the high mass region, with a pair of muons and tau leptons in the final state with the full Run II Dataset},%
+pdfsubject={CMS},%
+pdfkeywords={CMS, Exotic Higgs Physics, 2HDM,BSM}}
+
+\maketitle %maketitle comes after all the front information has been supplied
+% >> Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% **DO NOT REMOVE THE BIBLIOGRAPHY** which is located before the appendix.
+%% You can take the text between here and the bibiliography as an example which you should replace with the actual text of your document.
+%% If you include other TeX files, be sure to use "\input{filename}" rather than "\input filename".
+%% The latter works for you, but our parser looks for the braces and will break when uploading the document.
+%%%%%%%%%%%%%%%
+
+
+\section{Introduction}
+With the discovery of the Higgs Boson in 2012 with the Run I dataset, physicists have entertained the idea of using the Higgs as a window for new physics.
+Due to the Nature of the Electroweak Symmetry Breaking Mechanism ~\cite{Englert:1964et,Higgs:1964ia,Higgs:1964pj,Guralnik:1964eu,Higgs:1966ev,Kibble:1967sv}, the Higgs couples to all Standard Model particles.
+Beyond Standard Model (BSM) theories contain ample room for the Higgs to couple to particles beyond the SM, making the Higgs an excellent window to investigate any physics beyond the SM.
+In this paper, several well motivated BSM theories are considered.
+Noteably, the two Higgs doublet model (2HDM) with it's extension of a scalar singlet is considered (2HDM+S).
+These types of BSM theories can solve the $\mu$ coupling problem in Super Symmetry (SUSY), while maintaining general support of SUSY (Holomorphy), Axion-like Models (Peccei-Quinn), electroweak baryogensis and several Grand Unified Theories (GUTs).
+A representative diagram showing the physics process and the branching ratio as a function of $\text{tan}\beta$ is shown in figure~\ref{fig:feynman_haa}. This pseudoscalar Higgs search for "resolved" $a$ particles in the range of $20$ to $60$ GeV is a good search for new physics.
+In 2016 this general search was carried out with 35.9 $\text{fb}^{-1}$ of data and new competitive limits were set in~\cite{CMS-HIG-17-029}.
+Given the improvement in the limits for different 2HDM+S types, this search has garnered attention for the full Run II dataset of CMS.
+
+\begin{figure}[ht!b]
+  \includegraphics[width=0.47\textwidth]{Figures/feynman_haa.pdf}
+  \includegraphics[width=0.47\textwidth]{Figures/2m2t_BR_a40_t1-4.png}\\
+    \caption{\label{fig:feynman_haa} Diagram of Higgs decay to pseudoscalar $a$ particles (Left) and branching ratios for pseudoscalar production in different $\text{tan}\beta$ scenarios and different 2HDM+S Types (right)}
+\end{figure}
+
+Certain scenarios are entertained using yields provided by different 2HDM+S models. The branching ratios change based on the function of $\text{tan}\beta$ depending on the type of model under investigation. In particular, we look at types 1-4 which are detailed here~\cite{Branco_2012}. Type III is expected to be most sensitive as it maintains a larger branching ratio compared to other decay modes over the range of the pseudoscalar masses discussed here.
+
+Using the full Run II dataset, more constraints on these models are expected.
+
+
+
+
+\section{The CMS detector}
+From the central interaction point, the CMS detector hosts
+a silicon pixel and strip tracker, a lead tungstate crystal electromagnetic
+calorimeter (ECAL), and a brass and scintillator hadron calorimeter (HCAL),
+each composed of a barrel and two endcap sections. The central feature of
+the CMS apparatus is a superconducting solenoid of 6\unit{m} internal diameter, providing
+a magnetic field of 3.8\unit{T}. The silicon pixel and tracking systems as well as
+the calorimeters are contained within the solenoid volume. Muons are detected
+in gas-ionization chambers embedded in the steel flux-return yoke outside the
+solenoid. %cite
+
+The nominal $\Pp\Pp$ bunch crossing rate at the LHC is 40\unit{MHz}. In order to reduce the rate of 
+events that are recorded for offline analysis, events of interest are selected
+using a two-tiered trigger system~\cite{Khachatryan:2016bia}.
+The first level (L1) is composed of custom built electronics which makes use of
+high speed optical links and large Field Programmable Gate Arrays (FPGAs). 
+L1 reduces the event rate from the nominal bunch crossing to a rate of around
+100\unit{kHz} within a time interval of less than 3.5\mus.
+The second level, known as the High Level Trigger (HLT), consists of a farm of 
+generic processors running a version of the full event reconstruction software that
+ has been optimized for fast processing. The HLT reduces the event rate to about
+1\unit{kHz} before data storage.
+
+Since the 2012 data taking, significant upgrades of the L1 trigger 
+have benefited this analysis, especially in the final state with two semi-hadronically decaying 
+$\Pgt$ leptons, denoted as $\tauh$.  
+These upgrades improved the $\tauh$ identification at L1 by giving more flexibility 
+to object isolation, allowing new techniques to suppress the contribution from 
+additional $\Pp\Pp$ interactions per bunch
+crossing, and to reconstruct the L1 $\tauh$ object in a fiducial region that matches 
+more closely that of a true $\tauh$ decay.
+
+A more detailed description of the CMS detector, together with a definition of the 
+coordinate system used and the relevant kinematic variables, can be found in 
+Ref.~\cite{Chatrchyan:2008zzk}.
+
+\section{Simulated samples}
+
+The simulation typically used to compare with data is MadGraph5@NLO with PYTHIA 8 for hadronization~\cite{PYTHIA}. These CMS centrally-generated samples are then digitized using GEANT4~\cite{GEANT4} to the same format as real data events collected and processed at HLT. This raw data is then reconstructed to physics objects---such as tracks and higher level objects like leptons. A direct comparison between data and simulation can be made after calibrating simulation in control regions. 
+
+Data taken from CMS during the entire Run II period was examined, corresponding to 137 $\text{fb}^{-1}$ of integrated luminosity. An exhaustive list of data and simulation Monte Carlo (MC) can be found in appendix~\ref{app}.   
+
+\subsection{Standard Model Processes}
+\subsection{2 $\mu$ 2 $\tau$ Signal Samples }
+For the Monte Carlo production of the signal samples, to reflect the 2HDM modeling, events were generated at tree level for a pseudoscalar Higgs like boson between the masses of 15 and 60 in intervals of 5 GeV with gluon fusion production. These masses are sufficient for the parametric modeling described in the fit to obtain a more precise peak resolution.
+MadGraph5@NLO v2.6.5 was used to generate these events with a PYTHIA 8 hadronizer. Privately produced samples were used for 2017 and 2018. However, the scripts and conditions used are located here:
+ \texttt{https://github.com/samhiggie/iDM-analysis-AODproducer/tree/haa} .
+The NMSSMHET model was used to simulate the events. Parameters and information can be seen in the package:
+https://cms-project-generators.web.cern.ch/cms-project-generators/ .
+ 
+
+\section{Object Selection}
+\label{sec:objsel}
+\begin{itemize}
+    \item leading muons must have opposite charge coming from the $a$
+    \item tau decay products must have opposite charge coming from the other $a$
+    \item no b-quark identified jets 
+    \item signal extraction cuts (not shown in data MC control plots, but used in statistical test)
+    \begin{itemize}
+    \item invariant mass of the 4 lepton system cuts based on signal to background ratio and overall event yeild
+    \begin{itemize}
+        \item $\mu\mu\mu\tau$ all years at $M_{4l}<120GeV$
+        \item $\mu\mu e \tau$ all years at $M_{4l}<120GeV$
+        \item $\mu\mu e \mu$ all years at $M_{4l}<110GeV$
+        \item $\mu\mu\tau\tau$ 2017 and 2018 at $M_{4l}<130GeV$ and 2016 at $M_{4l}<135GeV$
+    \end{itemize}
+    \item $M_{\mu\mu} > M_{\tau\tau}$ (to account for energy loss from neutrinos).
+    \end{itemize}
+\end{itemize}
+
+\begin{table}[h!tbp]
+\centering
+\topcaption{ additional final state selection cuts
+\label{tab:basecuts}
+}
+\begin{tabular*}{0.8\textwidth}{c|p{0.6\linewidth}}
+\hline
+finalstate          & cuts \\\hline 
+$\mu\mu e \mu$    &    $\text{Iso. $\mu$ from $\tau$} <= 0.2$, $\text{Iso. $e$ from $\tau$} <= 0.15$       \\\hline
+$\mu\mu e \tau$   &   $\tauh$ DNN against $\mu$ and $e$        \\\hline
+$\mu\mu\mu\tau$   &   $\tauh$ DNN against $\mu$ and $e$,$\text{Iso. $\mu$ from $\tau$} <= 0.15$        \\\hline
+$\mu\mu\tau\tau$  &   $\tauh$ DNN against $\mu$ and $e$       \\\hline
+\end{tabular*}
+\end{table}
+
+\section{Event selection}
+\label{sec:selection}
+
+\subsection{Triggers for event selection}
+\label{sec:trig}
+The trigger requirements are inclusive, selecting events that pass single, double, and triple muon triggers. Events that are triggered by the single muon trigger criteria contain muons that are isolated with either $22$, $24$, and $27$ GeV energies. Double muon triggers have a $17$ GeV threshold for the leading muon and $8$ GeV for the subleading muon. Triple muon triggers are used for the channels that have three muons in the final state and have a descending threshold of $12$, $10$, and $5$ GeV respectively. In addition, to properly select objects that coincide with the trigger, triggers are matched to their corresponding objects. The lepton is matched to the seed and filter bit that is generated at the L1 system. Trigger filter bit matching ensures that the objects and events are correctly triggered. 
+
+%Selections.TeX
+\subsection{Optimizing lepton pair selection}
+\label{sec:selection}
+A simple selection algorithm was used to identify good lepton pairs that come from the pseudoscalar $a$. 
+Standard working point cuts are made, and two oppositely charged, isolated muons with the largest scalar summed $\pt$ are chosen to form the first decay products of the $a$. 
+Two opposite charged $\tau$ leptons with the largest scalar summed $\pt$ are chosen for the second $a$. 
+This approach increased the signal acceptance compared to choosing mass window cuts to form the $a$ pairs. 
+The pair matching efficiency study done with the preliminary dataset from 2016 is listed in table~\ref{tab:paireff}.
+\begin{table}[h!tbp]
+\begin{center}
+    \topcaption{Lepton pair matching efficiency}
+    \label{tab:paireff}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}\hline
+$a$ - Mass & 15     & 20    & 25    & 30    & 35    & 40    & 45    & 50    & 55    & 60 \\\hline
+Efficiency & 0.87   & 0.82  &0.79   & 0.79  & 0.79  & 0.80  & 0.80  & 0.83  & 0.85  & 0.87 \\\hline 
+\end{tabular}
+\end{center}
+\end{table}
+The dip in efficiency may be explained by the boosted or resolved $a$ particles depending on their mass and decay products. If the $a$ mass is low then it is more relativistic, resulting in collimated leptons. If the $a$ has a higher mass, then it is produced closer to rest and the leptons are identified at a large angle of separation. It is likely that the particle flow algorithm has a more difficult time in identifying decay products of the $a$ particles in between the mass extremes.
+
+\subsection{Optimizing final state event selection}
+After picking the leading prompt muons from the $a$ decay, the next step is to identify the other $a$ decay by using various leptons in the final state. The final state comprises four leptons: two muons coming from the leading $a$ and two tau leptons coming from the subleading $a$. These $\tau$ leptons can decay leptonically or hadronically, and this analysis counts events from both types of decay. Therefore, event selection is driven to find two prompt muons and all decay products of the tau leptons. Four final states are used: $\mu\mu e \mu$, $\mu\mu e \tau$, $\mu\mu\mu\tau$, and $\mu\mu\tau\tau$. 
+The states $\mu\mu\mu\mu$ or $\mu\mu e e $ are not included, as the expected number of events would be extremely low based on the double leptonic tau decay. 
+For notation, when the final state is listed with a tau, such as $\mu\mu\mu\tau$, the $\tau$ is presumed to decay hadronically. The third muon in this context would be coming from a leptonically decaying $\tau$. Additionally, due to convention in plotting, the $\mu$(s) are often marked as m(s) and $\tau$(s) as t(s) like in plot~\ref{fig:fakefactor_validation}.
+In addition to the kinematic requirements listed in~\ref{sec:objsel}, several cuts are made to select final state events. The following list contains cuts common to all channels:
+\begin{itemize}
+    \item leading muons must have opposite charge coming from the $a$
+    \item tau decay products must have opposite charge coming from the other $a$
+    \item no b-quark identified jets 
+    \item signal extraction cuts (not shown in data MC control plots, but used in statistical test)
+    \begin{itemize}
+    \item invariant mass of the 4 lepton system cuts based on signal to background ratio and overall event yeild
+    \begin{itemize}
+        \item $\mu\mu\mu\tau$ all years at $M_{4l}<120GeV$
+        \item $\mu\mu e \tau$ all years at $M_{4l}<120GeV$
+        \item $\mu\mu e \mu$ all years at $M_{4l}<110GeV$
+        \item $\mu\mu\tau\tau$ 2017 and 2018 at $M_{4l}<130GeV$ and 2016 at $M_{4l}<135GeV$
+    \end{itemize}
+    \item $M_{\mu\mu} > M_{\tau\tau}$ (to account for energy loss from neutrinos).
+    \end{itemize}
+\end{itemize}
+
+\begin{table}[h!tbp]
+\centering
+\topcaption{ additional final state selection cuts
+\label{tab:basecuts}
+}
+\begin{tabular*}{0.8\textwidth}{c|p{0.6\linewidth}}
+\hline
+finalstate          & cuts \\\hline 
+$\mu\mu e \mu$    &    $\text{Iso. $\mu$ from $\tau$} <= 0.2$, $\text{Iso. $e$ from $\tau$} <= 0.15$       \\\hline
+$\mu\mu e \tau$   &   $\tauh$ DNN against $\mu$ and $e$        \\\hline
+$\mu\mu\mu\tau$   &   $\tauh$ DNN against $\mu$ and $e$,$\text{Iso. $\mu$ from $\tau$} <= 0.15$        \\\hline
+$\mu\mu\tau\tau$  &   $\tauh$ DNN against $\mu$ and $e$       \\\hline
+\end{tabular*}
+\end{table}
+
+
+\section{Background estimation}
+\label{sec:background}
+The hadronic $\tau$ decays produce jets; therefore, jets coming from other processeses effectively fake the hadronic $\tau$ signature. This is a non-trival fake rate that needs to be measured and accounted for in this analysis. 
+In order to conduct the data driven method, a proportion is made to extract the jet faking tau background using an ``ABCD" method. 
+\subsection{Brief outline of the fake rate method}
+The fake rate function in the same sign (SS) region is \textit{known}.
+Events passing loose identification---that includes tight indentification---in the opposite sign (OS) region is \textit{known}.
+Events passing in the tight signal region is \textit{unknown}. 
+Assuming that the loose and tight identification is not dependent on the sign of the leptons. Then one can make the equivalence statement: 
+\begin{equation}
+\label{eq:abcd}
+\frac{\text{Events}_\text{SS Tight}}{\text{Events}_\text{SS Loose}} \doteq \frac{\text{Events}_\text{OS Tight}}{\text{Events}_\text{OS Loose}}
+\text{.}
+\end{equation}
+To make the expression more precise, the fake rate function is typically parametrized in lepton candidate transverse momentum. 
+ Also, prompt MC is subtracted from data, which is motivated by estimating the true jet faking tau background (non-prompt taus). If tau leptons in MC are identified as prompt then it is unlikely that the tau is a jet, so they are removed: 
+\begin{equation}
+f(p_T)=\frac{\text{Data Events}_\text{S.S. Tight} - \text{Prompt MC Background}_\text{S.S. Tight}}{{\text{Data Events}_\text{S.S. Loose} - \text{Prompt MC Background}_\text{S.S. Loose}}}
+\text{.}
+\end{equation} 
+
+After the measurement is made for each tau candidate, the fake rate is applied as an event weight---$w(f(p_T))$ a transfer function explained~\ref{eq:frw}---to the opposite sign loose region in order to extrapolate to the tight signal region. So isolating the events in the tight signal region and flipping the relation in equation \ref{eq:abcd}, one obtains the result: 
+\begin{equation}
+\text{Events}_\text{OS Tight} = w(f(p_T))\cdot \text{Events}_\text{OS Loose} \;\text{.}
+\end{equation}
+
+\subsection{Measurement of the fake rate}
+To measure the fake rate, multiple categories are considered and motivated through the processes which produce jets. As outlined in the SM Higgs decays to tau leptons analysis and its supporting document on fake rate measurements, several regions are used to determine the fake rate ~\cite{SMHTTarXiv}. The separate jet ``enriched" background processes are used for each final state
+\begin{itemize}
+	\item QCD multijet targeting the majority of jet→ \tauh fake events in the $\mu\mu\tau\tau$ final state,
+	\item W+jets targeting jets mostly in the $\mu\mu e\tau$ and $\mu\mu\mu\tau$ final states,
+	\item \ttbar events targeting fully-hadronic or semi-leptonic decays.
+\end{itemize} 
+
+
+
+The fake rates are then measured as a function of $p_T$ of the object and for final states involving hadronic tau leptons, and are further split into subcategories depending on the decay mode.  
+W+jets with no jets and one jet, QCD multi-jet with no jets, one jet, and more jets, and $t\bar{t}$ inclusive jets make up the total number of background categories that are measured. 
+At high hadronic tau $p_T$ (greater than 100\GeV), negative fake rates are possible because of low statistics and the linear fit model extrapolation, so if the candidate tau has a $p_T$ of greater than 100\GeV the rate at 100\GeV is applied. 
+In order to combine the fake rates from these ``enriched'' background processes and use it in an ABCD approach, the fraction of events for each of the background process are combined in an overall fake rate that is still parametrized by $\pt$ and category.  
+
+%In the QCD multijet region, there is no way to estimate it with pure MC simulation. Therefore, in order to estimate the QCD contribution all MC simulation events are subtracted before the measurements. Then the remaining fake rate measurement in the determination region is assumed to be from QCD.
+
+%In the W+Jets region, similarly all MC is subtracted except for the W+Jets simulation. Note that QCD contamination is minimal because of the dominance of the W boson resonance. 
+
+%In the $t\bar{t}$ region it is the same as the W+Jets regions, except the subtraction is $t\bar{t}$; however, there is also an isolation region that is used because the fake rate for this process is expected to be very small and actually calculable using MC, so in addition to the genuine $t\bar{t}$ events, the fraction of jets faking hadronic taus are also included in the subtraction. 
+
+
+%For more information on the specfic events that are targeted in the QCD multijet, W+Jets, and $t\bar{t}$ regions the SM reference has all the categories with a detailed description of the subtraction  
+
+Therefore the following steps are done for each final state to measure the fake rate:
+\begin{enumerate}
+\item[1.] Determine fake rate scale factor parametrized in candidate lepton $\pt$ in the QCD, W+jets, and $t\bar{t}$ regions
+\item[2.] Make corrections based on the other lepton in the channel for closure 
+\item[3.] Make corrections based on the differences between the first step and the signal region
+\item[4.] Determine the fraction of QCD, W+jets, and $t\bar{t}$ events in the signal region.
+\end{enumerate} 
+
+To help in the understanding of the measurement regions, a table listing the enriched background and targeted final state along with the cuts and the anti-isolation requirement (the non-orthogonal condition in the ABCD method) will be presented. 
+As indicated in the tables below, $\mu\tau$ and $ e \tau$ measured states share the same categories. For the $\tau\tau$ state, only the QCD ``enriched'' background category is considered. 
+For the $\mu\mu e\mu$ final state in the application, the fake rate measurements from the $\mu\tau$ and $e \tau$ measured states are used for the corresponding lepton ($\mu or e$). 
+
+
+\begin{table}[h!tbp]
+\centering
+\topcaption{Jet ``enriched'' background categories with cuts for each measured state, $\mu\tau$ and $e \tau $ have the same so they will be combined with the assumption that $l$ demarcates the muon or electron. Baseline selection cuts for events are made by default as listed in section~\ref{sec:selection} without the signal extraction cuts. 
+\label{tab:ffmeasure}
+}
+\begin{tabular}{|c|c|p{0.3\textwidth}|p{0.3\textwidth}|}
+\hline
+background &  measured state      &  cuts & anti-isolation \\\hline 
+
+QCD & $\mu\tau$/$ e\tau$  & SS leptons Isolation \hspace{.1\linewidth} $l$ $\in(0.02,0.15)$ & $\tau$ VVVLoose DNN but fails Med. DNN \\
+    & $\tau\tau$  & SS leptons subleading $\tau$ pass Med. DNN and leading VVVLoose DNN & leading $\tau$ fails Med DNN \\\hline
+
+W+Jets & $\mu\tau$/$ e\tau$  & SS leptons $m_T$ between $l$ and $p_T^{\text{miss}}$ $> 70 $ GeV & $\tau$ VVVLoose DNN but fails Med. DNN \\\hline
+
+$t\bar{t}$ & $\mu\tau$/$ e\tau$  & SS leptons number of b-tag jets $\geq 1 $ & $\tau$ VVVLoose DNN but fails Med. DNN \\\hline
+\end{tabular}
+\end{table}
+Fake factor measurements for the $\mu\tau$ measured state in the QCD region for 2017 is included in figure~\ref{fig:fakefactor_validation} on the left. 
+Only plots pertaining to the $ e \tau$ and $ \mu \tau$ states were created, but all states measured. 
+The rest of the measurements are included in appendix~\ref{app}. For a more detailed description of the data driven background method along with the measurements for the closure and extra correction terms regard reference~\cite{AN16355}.
+
+
+
+\subsection{Application of the fake rate method}
+
+After the jet faking tau rate is measured, it is then applied to events that are identified as loose and not tight. Since the final state involves two tau leptons, this procedure is applied to each tau lepton in the final state, thus requiring application of the fake rate in three different scenarios. The final weight is then applied depending on the pass and fail criteria of each lepton candidate. In the scenario where the event fails both candidate requirements, then a minus sign is included, to avoid the case of double counting.  
+ The weight is effectively a transfer factor that is created using the fake rate measured earlier. The transfer factor has its form because the weight is the ratio of tight to loose---tight excluded---instead of tight to loose---tight included. 
+\begin{itemize}
+\item{If event fails identification for $\tau$ 1:\begin{equation}\label{eq:frw} w_1(p_T)=\frac{f_{1}(p_T)}{1-f_{1}(p_T)}\end{equation}}
+\item{If event fails identification for $\tau$ 2:\begin{equation}w_2(p_T)=\frac{f_{2}(p_T)}{1-f_{2}(p_T)}\end{equation}}
+\item{If event fails identification for both:\begin{equation}w_{12}(p_T)=-\frac{f_{1}(p_T)}{1-f_{1}(p_T)}\cdot\frac{f_{2}(p_T)}{1-f_{2}(p_T)}\end{equation}}
+\end{itemize}
+
+To illustrate the different regions in the ABCD method along with each tau candidate, a diagram was drawn depicting the scenarios and is shown in figure~\ref{fig:fakefactor_reg}. 
+\begin{figure}[ht!b]
+\label{fig:fakefactor_reg}
+  \includegraphics[width=0.9\textwidth]{"Figures/fakefactor_diagram.pdf"}
+    \caption{ ABCD method diagram depicting the measurement and application regions for each \tauh lepton in the final sate.}
+\end{figure}
+
+This fake factor methodology has been used by other analyses such as the SM Higgs measurement with an associated Z boson~\cite{CMS-PAS-HIG-19-010}. 
+
+For a closure test, the same criteria are applied to the selection of the tight same sign region. The vast majority of the background should be jets faking taus in that case. Indeed it is shown in figure \ref{fig:fakefactor_validation} on the right.
+
+\begin{figure}[ht!b]
+\centering
+%\includegraphics[width=0.31\textwidth]{Figures/FF/plots_mt_2016/fit_rawFF_mt_qcd_0jet.pdf}
+\includegraphics[width=0.47\textwidth]{Figures/FF/plots_mt_2017/fit_rawFF_mt_qcd_0jet.pdf}
+%\includegraphics[width=0.31\textwidth]{Figures/FF/plots_mt_2018/fit_rawFF_mt_qcd_0jet.pdf}\\
+\includegraphics[width=0.47\textwidth]{"Figures/outplots_2016_smFF_mmmt_Nominal/AMass_blinded_mmmt_FF_SS_validation.png"}
+\caption{\label{fig:fakefactor_validation} (Left) Fake factors determined in the QCD multijet determination region with 0 jets in the $\mu\tau$ measured state in 2017. They are fitted with linear functions as a function of the $\tauh$ $\pt$. The green and purple lines indicate the shape systematics obtained by uncorrelating the uncertainties in the two fit parameters returned by the fit.  
+(Right) Validation of the fake factor method. Fake factors are applied to the same sign tight region.}
+\end{figure}
+
+  
+
+\section{Statistical Inference Modeling and Uncertainties}
+
+\begin{figure}[ht!b]
+  \centering
+  \includegraphics[width=0.47\textwidth]{Figures/outplots_allyears_combo_Nominal/AMass_blinded_combined.png}
+  \includegraphics[width=0.47\textwidth]{Figures/outplots_allyears_combo_Nominal/pt_1_combined.png}\\
+  \includegraphics[width=0.47\textwidth]{Figures/outplots_allyears_combo_Nominal/eta_1_combined.png}
+  \includegraphics[width=0.47\textwidth]{Figures/outplots_allyears_combo_Nominal/pt_3_combined.png}\\
+    \caption{\label{fig:AMass_RunII}  Several data MC control plots for the combination of the full Run II dataset and all final states.}
+\end{figure}
+
+
+In order to measure the systematic effects on the final fit distributions, changes in the fit templates are done and propagated to the fit model in the form of rate parameters. These rate parameters differ slightly between the signal and background distributions. 
+For background, the error in the fit parameters is directly included in the uncertainty model. 
+
+The uncertainty of the spline function affects the uncertainty for the signal, so it is included in the fit model. 
+As mentioned in the fit model section~\ref{sec:fitmodel} and shown in figure~\ref{fig:spline_2016_mmmt}, the magnitude of this uncertainty is estimated from the fit of the parameters for the spline. Overall, a 10\% uncertainty is used for the Lorentzian (alpha) and 20\% for the standard deviation (sigma) and 0.5\% for the mean (mean). Although the mean is measured very precisely, the energy scale shifts from the leptons are included in this number. 
+%Regarding the section highlighting the corrections~\ref{sec:corrections}, one can see the bin-shift from the energy scale. The bin-shift indicates the amount the mean of the distribution is affected from the energy scale shift. 
+The shift should fit within the envelope of the percentage on the parameter for it to be modeled correctly.
+
+
+For the other systematic uncertainties that are not based on parametric shapes, like the energy scale of the leptons, a log-normal deviation to the normalization is used. 
+
+
+
+
+\section{Results}
+\label{sec:res}
+After the final event selection, including the signal extraction cuts listed in section \ref{sec:selection}, the statistical hypothesis test can be made. 
+The final number of events listed in each category for the full Run II dataset is shown in the table \ref{tab:event_yield} below.
+
+
+\begin{table}[h!tbp]
+\label{tab:event_yield}
+\centering
+\begin{tabular}{l||c|c|c||c}
+\hline
+Year            &  Signal Total             & \multicolumn{3}{c}{Background Total} \\\hline
+                & $m_a=40\;\text{GeV}$ & Data Driven (FF)  & Irreducible (ZZ)                 & Total\\\hline
+2016                      & 16.15                       & 3.21             & 1.43                   & 4.64\\\hline
+2017                      & 19.49                       & 6.63             & 3.26                   & 9.89\\\hline
+2018                      & 27.45                       & 14.93             & 2.79                  & 17.72\\\hline\hline
+Run II                      & 63.09                       & 24.77             & 7.48                & 32.25\\\hline
+\end{tabular}
+\caption{Expected event yields of signal and background categories across all years with 137 $\text{fb}^{-1}$ of data. Signal normalized to .01\% of the SM Higgs Branching Fraction.
+}
+\end{table}.
+ 
+
+
+
+As discussed in the previous section~\ref{sec:fitmodel}, the shapes that were created are used in an upper limit for each mass point. 
+Initial values of the signal distributions are selected to make sure that the signal strength modifier ($\mu$) in the limit is of order unity. 
+The range of masses in the limit is between 20 GeV and 60 GeV to ensure compatibility with $h \rightarrow a a $ combination limits for additional exotic Higgs models---like those at lower $a$ mass. 
+In order to estimate the upper limit at 95\% CL on the branching fraction, a simple Poisson model can be used. For a statistically limited search, we can estimate the background yield as no events. The estimated upper limit on the branching fraction calculated earlier is: 
+\begin{equation}B =  \frac{N}{\sigma \cdot A\cdot \mathcal{L}} = 0.00043  \text{.}\end{equation} 
+This limit is set by adjusting the signal strength (event yield) until a p-value of 5\% is reached on the joint likelihood function for the fit model. 
+The event yield is normalized with a branching fraction, which was assumed to be $\sigma_{SM}(h) \times 0.01\%$.
+Multiplying the CL by 0.01\% returns the limit on $\frac{\sigma_h}{\sigma_{SM}} B(h\rightarrow aa\rightarrow2\mu2\tau)$.
+Preliminary limits are set using the asymptotic limit method~\cite{Cowan_2011} for each mass point.
+
+
+\clearpage
+
+All of the years and channels are then added together to form the combined result~\ref{fig:CLsRunII} and the model 2HDM+S interpretations for different scenarios. Type III, where coupling to $\tau$ leptons is favored, is expected to be the most stringent scenario for this analysis. More parameter space in theory is excluded at the upper 95\% level in regions of lower values on the limit (regions in blue) in figure~\ref{fig:2HDM}. Type I excludes mostly high mass particles and isn't depended on $\tan\beta$. Type II and III exclude more at the high $\tan\beta$ region as opposed to Type IV which excludes at the low $\tan\beta$ region.
+
+\begin{figure}[ht!b]
+\label{fig:CLsRunII} 
+\centering
+  \includegraphics[width=0.65\textwidth]{Figures/CLs/plotLimit_aa_2022_all_2022.png}
+    \caption{Asymptotic upper 95\% CL Limits on the branching fraction times ratio of the SM cross section for the full Run II dataset ($\text{137}\text{fb}^{-1}$)}
+\end{figure}
+
+\begin{figure}[ht!b]
+  \centering
+  \includegraphics[width=0.47\textwidth]{Figures/combination/2HDM_Model_2DLimits_I.png}
+  \includegraphics[width=0.47\textwidth]{Figures/combination/2HDM_Model_2DLimits_II.png}\\
+  \includegraphics[width=0.47\textwidth]{Figures/combination/2HDM_Model_2DLimits_III.png}
+  \includegraphics[width=0.47\textwidth]{Figures/combination/2HDM_Model_2DLimits_IV.png}\\
+    \caption{\label{fig:2HDM}  upper 95\% CL limits on the branch fraction of $h\rightarrow a a $ times the ratio of the SM cross sections for the full Run II dataset ($\text{137}\text{fb}^{-1}$) for different 2HDM+S model specific scenarios plotted also as a function of $\tan\beta$.}
+\end{figure}
+
+\clearpage
+
+\section{Summary}
+\label{sec:sum}
+Using the full Run II dataset collected at CMS corresponding to an integrated luminosity of $\text{137}\text{fb}^{-1}$, the search for the SM Higgs Boson, $h$, decaying to a pair of pseudoscalars, $a$, which then decay to pairs of muons and tau leptons was completed. 
+Expected upper 95\% confidence level limits are set to about $10^{-4}$ after the addition of all final final states. 
+%No excess was observed and furthermore, the most stringent limits have been set for these decay modes. 
+These results are independent of separate 2HDM+S models and is considered a generic search that applies to multiple MSSM scenarios along with any BSM physics within the search window. 
+
+
+
+\section{Appendix}
+\label{app}
+
+The full Run II dataset was used corresponding to $137 \text{fb}^{-1}$. The golden JSON files were used for correct intervals of validity (IOVs) for each year \ref{tab:certjson}. 
+
+
+\begin{table}[h!tb]
+\centering
+\topcaption{Certified JSON files for RunII IOVs 
+}
+\label{tab:certjson}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{c} \\\hline
+Cert\_271036-284044\_13TeV\_ReReco\_07Aug2017\_Collisions16\_JSON.txt \\\hline
+Cert\_294927-306462\_13TeV\_EOY2017ReReco\_Collisions17\_JSON.txt \\\hline
+Cert\_314472-325175\_13TeV\_17SeptEarlyReReco2018ABC\_PromptEraD\_Collisions18\_JSON.txt  \\\hline   
+\end{tabular}%
+}
+\end{table}
+
+
+
+Data for 2016
+\begin{table}[!h]
+\topcaption{
+  List of data sets included in the analysis for the 2016 data taking period.
+}
+\label{tab:datasets2016}
+\begin{center}
+{\footnotesize
+\begin{tabular}{c}
+\hline
+Data set  \\
+\hline
+\texttt{/SingleMuon/Run2016B\_ver2-Nano25Oct2019\_ver2-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016B\_ver1-Nano25Oct2019\_ver1-v1/NANOAOD}   \\
+\texttt{/SingleMuon/Run2016G-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016F-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016E-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016D-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016C-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2016H-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016H-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016G-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016F-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016B\_ver2-Nano25Oct2019\_ver2-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016B\_ver1-Nano25Oct2019\_ver1-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016E-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016D-Nano25Oct2019-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2016C-Nano25Oct2019-v1/NANOAOD} \\
+\hline
+\end{tabular}
+} % end footnotesize
+\end{center}
+\end{table}
+
+Data for 2017
+\begin{table}[!h]
+\topcaption{
+  List of data sets included in the analysis for the 2017 data taking period.
+}
+\label{tab:datasets2017}
+\begin{center}
+{\footnotesize
+\begin{tabular}{c}
+\hline
+Data set  \\
+\hline
+\texttt{/DoubleMuon/Run2017B-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2017C-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2017D-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2017E-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleMuon/Run2017F-02Apr2020-v1/NANOAOD} \\
+\texttt{/MuonEG/Run2017B-02Apr2020-v1/NANOAOD} \\
+\texttt{/MuonEG/Run2017C-02Apr2020-v1/NANOAOD} \\
+\texttt{/MuonEG/Run2017D-02Apr2020-v1/NANOAOD} \\
+\texttt{/MuonEG/Run2017E-02Apr2020-v1/NANOAOD} \\
+\texttt{/MuonEG/Run2017F-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2017B-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2017C-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2017D-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2017E-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2017F-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleEG/Run2017B-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleEG/Run2017C-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleEG/Run2017D-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleEG/Run2017E-02Apr2020-v1/NANOAOD} \\
+\texttt{/DoubleEG/Run2017F-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleElectron/Run2017B-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleElectron/Run2017C-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleElectron/Run2017D-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleElectron/Run2017E-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleElectron/Run2017F-02Apr2020-v1/NANOAOD} \\
+\hline
+\end{tabular}
+} % end footnotesize
+\end{center}
+\end{table}
+
+Data for 2018
+\begin{table}[!h]
+\topcaption{
+  List of data sets included in the analysis for the 2018 data taking period.
+}
+\label{tab:datasets2018}
+\begin{center}
+{\footnotesize
+\begin{tabular}{c}
+\hline
+Data set  \\
+\hline
+\texttt{/SingleMuon/Run2018A-02Apr2020-v1/NANOAOD} \\
+\texttt{/SingleMuon/Run2018B-02Apr2020-v1/NANOAOD}\\
+\texttt{/SingleMuon/Run2018C-02Apr2020-v1/NANOAOD}\\
+\texttt{/SingleMuon/Run2018D-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuon/Run2018A-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuon/Run2018B-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuon/Run2018C-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuon/Run2018D-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuonLowMass/Run2018A-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuonLowMass/Run2018B-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuonLowMass/Run2018C-02Apr2020-v1/NANOAOD}\\
+\texttt{/DoubleMuonLowMass/Run2018D-02Apr2020-v1/NANOAOD}\\
+\texttt{/EGamma/Run2018A-02Apr2020-v1/NANOAOD}\\
+\texttt{/EGamma/Run2018B-02Apr2020-v1/NANOAOD}\\
+\texttt{/EGamma/Run2018C-02Apr2020-v1/NANOAOD}\\
+\texttt{/EGamma/Run2018D-02Apr2020-v1/NANOAOD}\\
+\end{tabular}
+} % end footnotesize
+\end{center}
+\end{table}
+
+
+\clearpage
+
+\begin{table}[ht!b]
+\topcaption{
+  List of data sets included in the analysis for the 2016 data taking period.
+}
+\label{tab:mc2016}
+\begin{center}
+{\footnotesize
+{\resizebox{\textwidth}{!}{
+\begin{tabular}{c}
+\hline
+Monte Carlo Datasets for 2016  \\
+\hline
+\texttt{/W1JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/W2JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/W2JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/W3JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/W3JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/W4JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/W4JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/W4JetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WJetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/WJetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY1JetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY2JetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY3JetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY4JetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-10to50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WZTo3LNu\_TuneCUETP8M1\_13TeV-powheg-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WWW\_4F\_TuneCUETP8M1\_13TeV-amcatnlo-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WWZ\_TuneCUETP8M1\_13TeV-amcatnlo-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WZZ\_TuneCUETP8M1\_13TeV-amcatnlo-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZZZ\_TuneCUETP8M1\_13TeV-amcatnlo-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ttZJets\_13TeV\_madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ttWJets\_13TeV\_madgraphMLM/RunIISummer16NanoAODv7-Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2mu\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2nu\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2tau\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2mu2nu\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2mu2tau\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4tau\_13TeV\_MCFM701\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluZH\_HToWW\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/HZJ\_HToWW\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToLL\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToQQ\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WminusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/WplusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/HWminusJ\_HToWW\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/HWplusJ\_HToWW\_M125\_13TeV\_powheg\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-15\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-20\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-25\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-30\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-35\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-40\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-45\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-50\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-55\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+\texttt{/SUSYGluGluToHToAA\_AToMuMu\_AToTauTau\_M-60\_TuneCUETP8M1\_13TeV\_madgraph\_pythia8/RunIISummer16NanoAODv7-PUMoriond17\_Nano02Apr2020\_102X\_mcRun2\_asymptotic\_v8-v1/NANOAODSIM} \\
+
+\hline
+\end{tabular}}
+}} % end footnotesize
+\end{center}
+\end{table}
+\clearpage
+
+
+\begin{table}[ht!b]
+\topcaption{
+  List of data sets included in the analysis for the 2017 data taking period.
+}
+\label{tab:datasets2017}
+\begin{center}
+{\footnotesize
+{\resizebox{\textwidth}{!}{
+\begin{tabular}{c}
+\hline
+Monte Carlo Datasets for 2017 \\
+\hline
+
+\texttt{/DY1JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_new\_pmx\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY1JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_v3\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/DY2JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY2JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/DY3JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DY3JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/DY4JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_v2\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017RECOSIMstep\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017RECOSIMstep\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-10to50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-10to50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/W1JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_ext\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/W2JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/W3JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_PU2017\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/W4JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_new\_pmx\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WJetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/WJetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WZTo3LNu\_13TeV-powheg-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WWW\_4F\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WWZ\_4F\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WZZ\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZZZ\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ttZJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/ttZJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ttWJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/ttWJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2mu\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2mu\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT1\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT1\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2mu2tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2mu2tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT1\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_EXT\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4tau\_13TeV\_MCFM701\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/GluGluZH\_HToWW\_M125\_13TeV\_powheg\_pythia8\_TuneCP5/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/HZJ\_HToWW\_M125\_13TeV\_powheg\_jhugen714\_pythia8\_TuneCP5/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext1-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8\_ext2-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_new\_pmx\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/HWminusJ\_HToWW\_M125\_13TeV\_powheg\_pythia8\_TuneCP5/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/HWplusJ\_HToWW\_M125\_13TeV\_powheg\_pythia8\_TuneCP5/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToLL\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToQQ\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/ZHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WminusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/WplusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIFall17NanoAODv7-PU2017\_12Apr2018\_Nano02Apr2020\_102X\_mc2017\_realistic\_v8-v1/NANOAODSIM} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M15/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M20/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M25/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M30/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M35/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M40/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M45/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M50/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M55/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2017\_M60/} \\
+
+\hline
+\end{tabular}}
+}} % end footnotesize
+\end{center}
+\end{table}
+
+\clearpage
+\begin{table}[ht!b]
+\topcaption{
+  List of data sets included in the analysis for the 2018 data taking period.
+}
+\label{tab:datasets2018}
+\begin{center}
+{\footnotesize
+{\resizebox{\textwidth}{!}{
+\begin{tabular}{c}
+\hline
+Monte Carlo Datasets for 2018 \\
+\hline
+
+\texttt{/DY1JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DY2JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DY3JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DY4JetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-10to50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/DYJetsToLL\_M-10to50\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/W1JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/W2JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/W3JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/W4JetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/WJetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/WZTo3LNu\_TuneCP5\_13TeV-powheg-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/WWW\_4F\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/WWZ\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/WZZ\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/ZZZ\_TuneCP5\_13TeV-amcatnlo-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/ttZJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/ttWJets\_TuneCP5\_13TeV\_madgraphMLM\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2mu\_13TeV\_TuneCP5\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2e2tau\_13TeV\_TuneCP5\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo2mu2tau\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4e\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_EXT\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4mu\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_EXT\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluToContinToZZTo4tau\_13TeV\_MCFM701\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_EXT\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/HZJ\_HToWW\_M125\_13TeV\_powheg\_jhugen714\_pythia8\_TuneCP5/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_TuneCP5\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext1-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_TuneCP5\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21\_ext2-v1/NANOAODSIM} \\
+\texttt{/ZZTo4L\_13TeV\_powheg\_pythia8\_TuneCP5/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToLL\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/ggZH\_HToTauTau\_ZToQQ\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/GluGluZH\_HToWW\_M125\_13TeV\_powheg\_pythia8\_TuneCP5\_PSweights/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/WminusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/WplusHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/ZHToTauTau\_M125\_13TeV\_powheg\_pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/HWminusJ\_HToWW\_M125\_13TeV\_powheg\_jhugen724\_pythia8\_TuneCP5/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/HWplusJ\_HToWW\_M125\_13TeV\_powheg\_jhugen724\_pythia8\_TuneCP5/RunIIAutumn18NanoAODv7-Nano02Apr2020\_102X\_upgrade2018\_realistic\_v21-v1/NANOAODSIM} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M15/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M20/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M25/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M30/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M35/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M40/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M45/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M50/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M55/} \\
+\texttt{/eos/home-s/shigginb/HAA\_ntuples/ggha01a01Tomumutautau\_2018\_dtau\_M60/} \\
+
+\hline
+\end{tabular}}
+}} % end footnotesize
+\end{center}
+\end{table}
+\clearpage
+
+%% **DO NOT REMOVE BIBLIOGRAPHY**
+\bibliography{auto_generated}   % will be created by the tdr script.
+%% examples of appendices.
+%\clearpage
+%\appendix
+%\section{Appendix name}
+%%% DO NOT ADD \end{document}!
+
+
